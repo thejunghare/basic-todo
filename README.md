@@ -18,6 +18,16 @@ Before you begin, ensure you have met the following requirements:
 - A MySQL database set up with a user and credentials.
 - Basic knowledge of PHP and SQL.
 
+CREATE TABLE `todos` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `task` VARCHAR(255) NOT NULL,
+    `description` TEXT,
+    `due_date` DATE,
+    `completed` BOOLEAN NOT NULL DEFAULT false,
+    INDEX `idx_completed` (`completed`)
+) ENGINE=InnoDB;
+
+
 ## Installation
 
 1. Clone this repository to your web server directory:
