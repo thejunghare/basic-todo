@@ -8,18 +8,19 @@ import (
 )
 
 func ConnectDB() *gorm.DB {
-	//	load env details
+	// *load env details
 	errorENV := godotenv.Load()
 	if errorENV != nil {
 		panic("Failed to load env file")
 	}
 
+	// *load details from .env
 	dbUsername := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASS")
 	dbHostname := os.Getenv("DB_HOST")
 	dbName := os.Getenv("DB_NAME")
 
-	// connnect to database
+	// *connnect to database
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=true&loc=Local", dbUsername, dbPassword, dbHostname, dbName)
 	db, errorDB := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if errorDB != nil {
@@ -29,7 +30,7 @@ func ConnectDB() *gorm.DB {
 	return db
 }
 
-// disconnect to database
+// *disconnect to database
 func DisconnectDB(db *gorm.DB) {
 	dbSQL, err := db.DB()
 	if err != nil {
