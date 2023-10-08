@@ -2,3 +2,4 @@ config.php
 go.mod
 go.sum
 External Libraries
+.env
